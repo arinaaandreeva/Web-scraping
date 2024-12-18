@@ -16,3 +16,24 @@
     <td> Распознавание текста </td>
  </tr>
 </table>
+
+### UML Sequence Diagram
+
+```plantuml
+@startuml
+actor User
+participant Bot
+participant "Telegram API" as API
+participant "Tesseract OCR" as OCR
+participant "File System" as FS
+
+User -> Bot : Отправка фото
+Bot -> API : Получить фото
+API -> Bot : Отправить фото
+Bot -> FS : Скачать фото
+FS -> Bot : Фото сохранено
+Bot -> OCR : Предобработка и распознавание текста
+OCR -> Bot : Вернуть текст
+Bot -> User : Отправить текст
+@enduml
+
